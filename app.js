@@ -15,12 +15,14 @@ todoButton.addEventListener('click',addTodo);
 function addTodo(event){
     //prevent the default event --> form submitting
     event.preventDefault();
+    
     //creat TODO-Div
     const todoDiv = document.createElement('div');
     todoDiv.classList.add('todo');
+    
     //create TODO-Li
     const newTodo = document.createElement('li');
-    newTodo.innerText='sample';
+    newTodo.innerText=todoInput.value;
     newTodo.classList.add('todo-item');
     todoDiv.appendChild(newTodo);
 
@@ -35,10 +37,26 @@ function addTodo(event){
     // create the trash button
     const trashButton = document.createElement('button');
     trashButton.innerHTML='<li class="fas fa-trash-alt"></li>';
-    trashButton.classList.add('complete-btn');
+    trashButton.classList.add('trash-btn');
     todoDiv.appendChild(trashButton);
 
-    todoList.appendChild(todoDiv);    
+    todoList.appendChild(todoDiv);
+    
+    // delete the input field after submit the todo
+    todoInput.value = "";
     
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
