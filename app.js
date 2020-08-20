@@ -27,6 +27,9 @@ function addTodo(event) {
   newTodo.classList.add("todo-item");
   todoDiv.appendChild(newTodo);
 
+  //add created todo to the localstorage
+  saveLocalTodos(todoInput.value);
+
   // create the check button
   const completeButton = document.createElement("button");
   completeButton.innerHTML = '<li class="fas fa-check"></li>';
@@ -44,6 +47,8 @@ function addTodo(event) {
   // delete the input field after submit the todo
   todoInput.value = "";
 }
+
+// -- Delete and Check Item
 
 function deleteOrCheckItem(e) {
   const item = e.target;
@@ -66,6 +71,8 @@ function deleteOrCheckItem(e) {
     todo.classList.toggle("completed");
   }
 }
+
+// -- Data filterint by type
 
 function filterTodo(e) {
   const todos = todoList.childNodes;
@@ -93,3 +100,15 @@ function filterTodo(e) {
   });
 }
 
+// -- Localstorage saving --
+
+function saveLocalTodos(todo) {
+  let todos;
+  if (localStorage.getItem("todos") === null) {
+    todos = [];
+  } else {
+    todos = JSON.parse(localStorage.getItem("todos"));
+  }
+  todos.push(todo);
+  localStorage.setItem("todos", JSON.stringify(todos));
+}
